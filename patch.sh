@@ -1,7 +1,6 @@
 #!/bin/bash
 for repos in revanced-patches revanced-cli revanced-integrations; do
-    url="https://api.github.com/repos/inotia00/$repos/releases/latest"
-    curl -s "$url" | jq -r '.assets[].browser_download_url' | xargs -n 1 curl -sL -O
+    curl -s "https://api.github.com/repos/inotia00/$repos/releases/latest" | jq -r '.assets[].browser_download_url' | xargs -n 1 curl -sL -O
 done
 EXCLUDE_PATCHES=()
 for word in $(cat exclude-patches.txt) ; do
