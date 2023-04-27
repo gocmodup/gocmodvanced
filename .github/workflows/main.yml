@@ -24,8 +24,7 @@ jobs:
       - name: Generate release info
         run: | 
           echo "
-          **Change log** :point_down:
-          [Revanced Extended](https://github.com/inotia00/revanced-patches/releases/latest)
+          **Messenger Revanced** 
           "> ${{ github.workspace }}-CHANGELOG.txt
           
       - name: Release
