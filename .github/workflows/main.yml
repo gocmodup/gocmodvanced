@@ -31,9 +31,9 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v0.1.15
         with:
-          files: yt*.apk 
-          name: Revanced Extended 
-          tag_name: yt
+          files: messenger*.apk 
+          name: Revanced
+          tag_name: messenger
           body_path: ${{ github.workspace }}-CHANGELOG.txt
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}   
