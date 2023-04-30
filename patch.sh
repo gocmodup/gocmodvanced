@@ -23,4 +23,5 @@ java -jar revanced-cli*.jar -m revanced-integrations*.apk -b revanced-patches*.j
 }
 get_patch "revanced"
 get_key_patch "exclude-patches.txt" "include-patches.txt"
-patch "com.facebook.orca" "messenger-revanced.apk"
+echo "${patches[@]}"
+#patch "com.facebook.orca" "messenger-revanced.apk"
