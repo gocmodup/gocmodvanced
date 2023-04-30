@@ -16,7 +16,7 @@ done
 }
 patch () {
 chmod +x apkeep && ./apkeep -a $1 .
-java -jar revanced-cli*.jar -m revanced-integrations*.apk -b revanced-patches*.jar -a $1.apk --keystore=ks.keystore -o messenger-revanced.apk
+java -jar revanced-cli*.jar -m revanced-integrations*.apk -b revanced-patches*.jar -a $1.apk --keystore=ks.keystore -o $2
 }
 get_patch
-patch "com.facebook.orca"
+patch "com.facebook.orca" "messenger-revanced.apk"
