@@ -44,9 +44,7 @@ jobs:
           delete_tags: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
           
-
       - name: Delete workflow runs
         uses: Mattraks/delete-workflow-runs@v2
         with:
