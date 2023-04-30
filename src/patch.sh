@@ -14,7 +14,10 @@ for word in $(cat $1/include-patches) ; do
     INCLUDE_PATCHES+=("-i $word")
 done
 }
-patch () {
+get_ver() {
+version=$(jq -r '.[] | select(.name == "$1") | .compatiblePackages[] | select(.name == "tv.twitch.android.app") | .versions[-1]' patches.json)
+}
+patch() {
 chmod +x apkeep && ./apkeep -a $1 .
 java -jar revanced-cli*.jar -m revanced-integrations*.apk -b revanced-patches*.jar -a $1.apk ${EXCLUDE_PATCHES[@]} ${INCLUDE_PATCHES[@]} --keystore=ks.keystore -o ./build/$2.ap
 }
