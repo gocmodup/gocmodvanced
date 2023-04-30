@@ -6,15 +6,15 @@ done
 }
 get_key_patch() {
 patches=()
-if [[ -n "$(cat exclude-patches.txt)" ]]; then
+if [[ -n "$(cat $1)" ]]; then
     while read -r patch; do
         PATCHES+=("-e $patch")
-    done <<< "$(cat exclude-patches.txt)"
+    done <<< "$(cat $1)"
 fi
-if [[ -n "$(cat include-patches.txt)" ]]; then
+if [[ -n "$(cat $1)" ]]; then
     while read -r patch; do
         PATCHES+=("-i $patch")
-    done <<< "$(cat include-patches.txt)"
+    done <<< "$(cat $2)"
 fi
 }
 patch () {
@@ -22,4 +22,5 @@ chmod +x apkeep && ./apkeep -a $1 .
 java -jar revanced-cli*.jar -m revanced-integrations*.apk -b revanced-patches*.jar -a $1.apk ${patches[@]} --keystore=ks.keystore -o $2
 }
 get_patch
+get_key_patch "exclude-patches.txt" "include-patches.txt"
 patch "com.facebook.orca" "messenger-revanced.apk"
