@@ -15,7 +15,7 @@ for word in $(cat include-patches.txt) ; do
 done
 }
 get_apk() {
-chmod +x apkeep && ./apkeep -a com.facebook.orca.apk .
+chmod +x apkeep && ./apkeep -a com.facebook.orca .
 }
 get_patch
 get_apk
