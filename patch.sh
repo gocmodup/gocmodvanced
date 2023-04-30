@@ -5,18 +5,21 @@ for repos in revanced-patches revanced-cli revanced-integrations; do
 done
 }
 get_key_patch() {
-EXCLUDE_PATCHES=()
-for word in $(cat exclude-patches.txt) ; do
-    EXCLUDE_PATCHES+=("-e $word")
-done
-INCLUDE_PATCHES=()
-for word in $(cat include-patches.txt) ; do
-    INCLUDE_PATCHES+=("-i $word")
-done
+patches=()
+if [[ -n "$(cat exclude-patches.txt)" ]]; then
+    while read -r patch; do
+        PATCHES+=("-e $patch")
+    done <<< "$(cat exclude-patches.txt)"
+fi
+if [[ -n "$(cat include-patches.txt)" ]]; then
+    while read -r patch; do
+        PATCHES+=("-i $patch")
+    done <<< "$(cat include-patches.txt)"
+fi
 }
 patch () {
 chmod +x apkeep && ./apkeep -a $1 .
-java -jar revanced-cli*.jar -m revanced-integrations*.apk -b revanced-patches*.jar -a $1.apk --keystore=ks.keystore -o $2
+java -jar revanced-cli*.jar -m revanced-integrations*.apk -b revanced-patches*.jar -a $1.apk ${patches[@]} --keystore=ks.keystore -o $2
 }
 get_patch
 patch "com.facebook.orca" "messenger-revanced.apk"
