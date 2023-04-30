@@ -5,7 +5,6 @@ for repos in revanced-patches revanced-cli revanced-integrations; do
 done
 }
 get_key_patch() {
-patches=()
 EXCLUDE_PATCHES=()
 for word in $(cat $1/exclude-patches) ; do
     EXCLUDE_PATCHES+=("-e $word")
