@@ -11,7 +11,7 @@ if [[ -n "$(cat $1)" ]]; then
         PATCHES+=("-e $patch")
     done <<< "$(cat $1)"
 fi
-if [[ -n "$(cat $1)" ]]; then
+if [[ -n "$(cat $2)" ]]; then
     while read -r patch; do
         PATCHES+=("-i $patch")
     done <<< "$(cat $2)"
