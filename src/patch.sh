@@ -14,8 +14,8 @@ for word in $(cat $1/include-patches) ; do
     INCLUDE_PATCHES+=("-i $word")
 done
 }
-get_ver() {
-version=$(jq -r '.[] | select(.name == "block-video-ads") | .compatiblePackages[] | select(.name == "tv.twitch.android.app") | .versions[-1]' patches.json)
+get_tw_ver() {
+twversion=$(jq -r '.[] | select(.name == "block-video-ads") | .compatiblePackages[] | select(.name == "tv.twitch.android.app") | .versions[-1]' patches.json)
 }
 patch() {
 chmod +x apkeep && ./apkeep -a $1 .
