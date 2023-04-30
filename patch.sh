@@ -7,11 +7,11 @@ done
 get_key_patch() {
 patches=()
 EXCLUDE_PATCHES=()
-for word in $(cat $1) ; do
+for word in $(cat $1/exclude-patches) ; do
     EXCLUDE_PATCHES+=("-e $word")
 done
 INCLUDE_PATCHES=()
-for word in $(cat $2) ; do
+for word in $(cat $1/include-patches) ; do
     INCLUDE_PATCHES+=("-i $word")
 done
 }
@@ -20,5 +20,5 @@ chmod +x apkeep && ./apkeep -a $1 .
 java -jar revanced-cli*.jar -m revanced-integrations*.apk -b revanced-patches*.jar -a $1.apk ${EXCLUDE_PATCHES[@]} ${INCLUDE_PATCHES[@]} --keystore=ks.keystore -o $2
 }
 # get_patch "revanced"
-get_key_patch "exclude-patches.txt" "include-patches.txt"
+get_key_patch "messenger"
 #patch "com.facebook.orca" "messenger-revanced.apk"
