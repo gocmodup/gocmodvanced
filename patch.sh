@@ -14,7 +14,7 @@ for word in $(cat include-patches.txt) ; do
     INCLUDE_PATCHES+=("-i $word")
 done
 }
-patch() {
+get_apk() {
 chmod +x apkeep && ./apkeep -a com.facebook.orca .
 }
 java -jar revanced-cli*.jar -m revanced-integrations*.apk -b revanced-patches*.jar -a com.facebook.orca.apk --keystore=ks.keystore -o messenger-revanced.apk
