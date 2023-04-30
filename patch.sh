@@ -17,4 +17,6 @@ done
 get_apk() {
 chmod +x apkeep && ./apkeep -a com.facebook.orca.apk .
 }
+get_patch
+get_apk
 java -jar revanced-cli*.jar -m revanced-integrations*.apk -b revanced-patches*.jar -a com.facebook.orca.apk --keystore=ks.keystore -o messenger-revanced.apk
