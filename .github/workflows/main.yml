@@ -30,7 +30,7 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v0.1.15
         with:
-          files: messenger*.apk 
+          files: ./build/*
           name: Messenger 
           tag_name: messenger
           body_path: ${{ github.workspace }}-CHANGELOG.txt
