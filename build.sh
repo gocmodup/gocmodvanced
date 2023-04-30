@@ -5,5 +5,5 @@ get_patch "revanced"
 #get_key_patch "messenger"
 #patch "com.facebook.orca" "messenger-revanced"
 # Patch Tiktok
-get_ver
-patch "tv.twitch.android.app@$version" "twitch-rv"
+get_tw_ver
+patch "tv.twitch.android.app@$twversion" "twitch-revanced-v$twversion"
