@@ -17,6 +17,9 @@ done
 get_tw_ver() {
 twversion=$(jq -r '.[] | select(.name == "block-video-ads") | .compatiblePackages[] | select(.name == "tv.twitch.android.app") | .versions[-1]' patches.json)
 }
+get_tt_ver() {
+twversion=$(jq -r '.[] | select(.name == "downloads") | .compatiblePackages[] | select(.name == "com.ss.android.ugc.trill") | .versions[-1]' patches.json)
+}
 patch() {
 chmod +x apkeep && ./apkeep -a $1 .
 java -jar revanced-cli*.jar -m revanced-integrations*.apk -b revanced-patches*.jar -a $1.apk ${EXCLUDE_PATCHES[@]} ${INCLUDE_PATCHES[@]} --keystore=ks.keystore -o ./build/$2.apk
