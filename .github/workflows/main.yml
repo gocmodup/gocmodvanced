@@ -1,6 +1,6 @@
 name: Patch Revanced 
 on:
-  push:
+#  push:
 #  schedule:
 #    - cron: "0 10 * * *"
   workflow_dispatch:
@@ -24,15 +24,18 @@ jobs:
       - name: Generate release info
         run: | 
           echo "
-          **Revanced** 
+          **Change log** :point_down:
+          [Revanced](https://github.com/revanced/revanced-patches/releases/latest)
+          [Revanced Extended](https://github.com/inotia00/revanced-patches/releases/latest)
           "> ${{ github.workspace }}-CHANGELOG.txt
+         
           
       - name: Release
         uses: softprops/action-gh-release@v0.1.15
         with:
           files: ./build/*
-          name: Revanced 
-          tag_name: rv
+          name: Revanced & Revanced Extended
+          tag_name: all
           body_path: ${{ github.workspace }}-CHANGELOG.txt
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}   
@@ -72,15 +75,18 @@ jobs:
       - name: Generate release info
         run: | 
           echo "
-          **Revanced Extended** 
+          **Change log** :point_down:
+          [Revanced](https://github.com/revanced/revanced-patches/releases/latest)
+          [Revanced Extended](https://github.com/inotia00/revanced-patches/releases/latest)
           "> ${{ github.workspace }}-CHANGELOG.txt
+         
           
       - name: Release
         uses: softprops/action-gh-release@v0.1.15
         with:
           files: ./build/*
-          name: Revanced Extended 
-          tag_name: rve
+          name: Revanced & Revanced Extended
+          tag_name: all
           body_path: ${{ github.workspace }}-CHANGELOG.txt
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}   
