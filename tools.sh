@@ -1,5 +1,4 @@
 dl_gh() {
-    echo "⏬ Downloading resources..."
     for repo in revanced-patches revanced-cli revanced-integrations ; do
     asset_urls=$(wget -qO- "https://api.github.com/repos/revanced/$repo/releases/latest" | jq -r '.assets[] | "\(.browser_download_url) \(.name)"')
         while read -r url names
@@ -127,11 +126,9 @@ dl_mes() {
 # Function fletch latest supported version can patch
 get_support_ytversion() {
     ytversion=$(jq -r '.[] | select(.name == "microg-support") | .compatiblePackages[] | select(.name == "com.google.android.youtube") | .versions[-1]' patches.json) 
-    echo "✅️ Found version: $ytversion"
 }
 get_support_ytmsversion() {
     ytmsversion=$(jq -r '.[] | select(.name == "hide-get-premium") | .compatiblePackages[] | select(.name == "com.google.android.apps.youtube.music") | .versions[-1]' patches.json)
-    echo "✅️ Found version: $ytmsversion"
 }
 get_tw_ver() {
 twversion=$(jq -r '.[] | select(.name == "block-video-ads") | .compatiblePackages[] | select(.name == "tv.twitch.android.app") | .versions[-1]' patches.json)
