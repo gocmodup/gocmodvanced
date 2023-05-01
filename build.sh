@@ -10,5 +10,5 @@ get_tw_ver
 patch "tv.twitch.android.app@$twversion" "twitch-revanced-v$twversion"
 # Patch Tiktok 
 get_key_patch "tiktok"
-get_tt_ver
-patch "com.ss.android.ugc.trill@$ttversion" "tiktok-revanced-v$ttversion"
+#get_tt_ver
+patch "com.ss.android.ugc.trill" "tiktok-revanced"
