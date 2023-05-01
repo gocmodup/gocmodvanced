@@ -11,4 +11,4 @@ get_patch "revanced"
 # Patch Tiktok 
 get_key_patch "tiktok"
 #get_tt_ver
-patch "com.ss.android.ugc.trill" "tiktok-revanced"
+patch "com.ss.android.ugc.trill@$ttversion" "tiktok-revanced-v$ttversion"
