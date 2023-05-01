@@ -1,6 +1,6 @@
 name: Patch Revanced 
 on:
-#  push:
+  push:
 #  schedule:
 #    - cron: "0 10 * * *"
   workflow_dispatch:
@@ -19,7 +19,7 @@ jobs:
           java-version: '17'
       
       - name: Patch apk
-        run: bash build.sh  
+        run: bash build-rv.sh  
         
       - name: Generate release info
         run: | 
