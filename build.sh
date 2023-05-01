@@ -1,5 +1,5 @@
 #!/bin/bash
-source ./src/patch.sh
+source tools.sh
 get_patch "revanced"
 # Patch Messenger
 #get_key_patch "messenger"
