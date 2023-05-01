@@ -7,33 +7,34 @@ dl_gh() {
             wget -q -O "$names" $url
         done <<< "$asset_urls"
     done
-
 echo "All assets downloaded"
 }
 get_patches_key() {
-EXCLUDE_PATCHES=()
-for word in $(cat $1/exclude-patches) ; do
-    EXCLUDE_PATCHES+=("-e $word")
-done
-INCLUDE_PATCHES=()
-for word in $(cat $1/include-patches) ; do
-    INCLUDE_PATCHES+=("-i $word")
-done
+    EXCLUDE_PATCHES=()
+        for word in $(cat $1/exclude-patches) ; do
+            EXCLUDE_PATCHES+=("-e $word")
+        done
+    INCLUDE_PATCHES=()
+        for word in $(cat $1/include-patches) ; do
+            INCLUDE_PATCHES+=("-i $word")
+        done
 }
 # Function download YouTube and YouTube Music apk from APKmirror
 req() { 
     wget -nv -O "$2" -U "Mozilla/5.0 (X11; Linux x86_64; rv:111.0) Gecko/20100101 Firefox/111.0" "$1"
 }
 # Wget apk verions
-get_apk_vers() { req "$1" - | sed -n 's;.*Version:</span><span class="infoSlide-value">\(.*\) </span>.*;\1;p'; }
+get_apk_vers() { 
+    req "$1" - | sed -n 's;.*Version:</span><span class="infoSlide-value">\(.*\) </span>.*;\1;p'
+}
 
 # Wget apk verions(largest)
 get_largest_ver() {
-	local max=0
-	while read -r v || [ -n "$v" ]; do
-		if [[ ${v//[!0-9]/} -gt ${max//[!0-9]/} ]]; then max=$v; fi
-	done
-	if [[ $max = 0 ]]; then echo ""; else echo "$max"; fi
+  	local max=0
+  	while read -r v || [ -n "$v" ]; do
+    		if [[ ${v//[!0-9]/} -gt ${max//[!0-9]/} ]]; then max=$v; fi
+	  done
+      	if [[ $max = 0 ]]; then echo ""; else echo "$max"; fi
 }
 
 dl_apk() {
