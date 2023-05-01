@@ -9,7 +9,7 @@ rm -f revanced-patches*.jar
 release=$(curl -s "https://api.github.com/repos/luxysiv/revanced-build/releases/latest")
 asset=$(echo "$release" | jq -r '.assets[] | select(.name == "revanced-version.txt") | .browser_download_url')
 curl -sL -O "$asset"
-if diff -q patch-version.txt new.txt >/dev/null ; then
+if diff -q revanced-version.txt new.txt >/dev/null ; then
 echo "Old patch!!! Not build"
 exit 1
 else
