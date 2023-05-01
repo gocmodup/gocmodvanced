@@ -38,91 +38,86 @@ get_largest_ver() {
 }
 
 dl_apk() {
-	local url=$1 regexp=$2 output=$3
-	url="https://www.apkmirror.com$(req "$url" - | tr '\n' ' ' | sed -n "s/href=\"/@/g; s;.*${regexp}.*;\1;p")"
-	echo "$url"
-	url="https://www.apkmirror.com$(req "$url" - | tr '\n' ' ' | sed -n 's;.*href="\(.*key=[^"]*\)">.*;\1;p')"
-	url="https://www.apkmirror.com$(req "$url" - | tr '\n' ' ' | sed -n 's;.*href="\(.*key=[^"]*\)">.*;\1;p')"
-	req "$url" "$output"
+	 local url=$1 regexp=$2 output=$3
+	 url="https://www.apkmirror.com$(req "$url" - | tr '\n' ' ' | sed -n "s/href=\"/@/g; s;.*${regexp}.*;\1;p")"
+	 echo "$url"
+	 url="https://www.apkmirror.com$(req "$url" - | tr '\n' ' ' | sed -n 's;.*href="\(.*key=[^"]*\)">.*;\1;p')"
+	 url="https://www.apkmirror.com$(req "$url" - | tr '\n' ' ' | sed -n 's;.*href="\(.*key=[^"]*\)">.*;\1;p')"
+	 req "$url" "$output"
 }
 
 # Downloading youtube
 dl_yt() {
-	echo "Downloading YouTube"
-	local last_ver
-	last_ver="$ytversion"
-	last_ver="${last_ver:-$(get_apk_vers "https://www.apkmirror.com/uploads/?appcategory=youtube" | get_largest_ver)}"
-	
-	echo "Choosing version '${last_ver}'"
-	local base_apk="youtube.apk"
-	  dl_url=$(dl_apk "https://www.apkmirror.com/apk/google-inc/youtube/youtube-${last_ver//./-}-release/" \
+	 echo "Downloading YouTube"
+	 local last_ver
+	 last_ver="$ytversion"
+	 last_ver="${last_ver:-$(get_apk_vers "https://www.apkmirror.com/uploads/?appcategory=youtube" | get_largest_ver)}"
+	 echo "Choosing version '${last_ver}'"
+	 local base_apk="youtube.apk"
+	 dl_url=$(dl_apk "https://www.apkmirror.com/apk/google-inc/youtube/youtube-${last_ver//./-}-release/" \
 			"APK</span>[^@]*@\([^#]*\)" \
 			"$base_apk")
-		echo "YouTube version: ${last_ver}"
-		echo "downloaded from: [APKMirror - YouTube]($dl_url)"
+	 echo "YouTube version: ${last_ver}"
+	 echo "downloaded from: [APKMirror - YouTube]($dl_url)"
 }
 
 # Downloading youtube music
 dl_ytms() {
-	echo "Downloading YouTube Music (${arm64-v8a})"
-	local last_ver
-	last_ver="$ytmsversion"
-	last_ver="${last_ver:-$(get_apk_vers "https://www.apkmirror.com/uploads/?appcategory=youtube-music" | get_largest_ver)}"
-	
-	echo "Choosing version '${last_ver}'"
-	local base_apk="youtube-music.apk"
-	local regexp_arch='arm64-v8a</div>[^@]*@\([^"]*\)'
-		dl_url=$(dl_apk "https://www.apkmirror.com/apk/google-inc/youtube-music/youtube-music-${last_ver//./-}-release/" \
+	 echo "Downloading YouTube Music (${arm64-v8a})"
+	 local last_ver
+	 last_ver="$ytmsversion"
+	 last_ver="${last_ver:-$(get_apk_vers "https://www.apkmirror.com/uploads/?appcategory=youtube-music" | get_largest_ver)}"
+	 echo "Choosing version '${last_ver}'"
+	 local base_apk="youtube-music.apk"
+	 local regexp_arch='arm64-v8a</div>[^@]*@\([^"]*\)'
+	 dl_url=$(dl_apk "https://www.apkmirror.com/apk/google-inc/youtube-music/youtube-music-${last_ver//./-}-release/" \
 			"$regexp_arch" \
 			"$base_apk")
-		echo "YouTube Music (${arm64-v8a}) version: ${last_ver}"
-		echo "downloaded from: [APKMirror - YouTube Music ${arm64-v8a}]($dl_url)"
+	 echo "YouTube Music (${arm64-v8a}) version: ${last_ver}"
+	 echo "downloaded from: [APKMirror - YouTube Music ${arm64-v8a}]($dl_url)"
 }
 # Downloading tiktok
 dl_tt() {
-	echo "Downloading TikTok"
-	local last_ver
-	last_ver="$ttversion"
-	last_ver="${last_ver:-$(get_apk_vers "https://www.apkmirror.com/uploads/?appcategory=tik-tok-including-musical-ly" | get_largest_ver)}"
-	
-	echo "Choosing version '${last_ver}'"
-	local base_apk="tiktok.apk"
-		dl_url=$(dl_apk "https://www.apkmirror.com/apk/tiktok-pte-ltd/tik-tok-including-musical-ly/tik-tok-including-musical-ly-${last_ver//./-}-release/" \
+	 echo "Downloading TikTok"
+	 local last_ver
+	 last_ver="$ttversion"
+	 last_ver="${last_ver:-$(get_apk_vers "https://www.apkmirror.com/uploads/?appcategory=tik-tok-including-musical-ly" | get_largest_ver)}"
+	 echo "Choosing version '${last_ver}'"
+	 local base_apk="tiktok.apk"
+	 dl_url=$(dl_apk "https://www.apkmirror.com/apk/tiktok-pte-ltd/tik-tok-including-musical-ly/tik-tok-including-musical-ly-${last_ver//./-}-release/" \
 			"APK</span>[^@]*@\([^#]*\)" \
 			"$base_apk")
-		echo "TikTok version: ${last_ver}"
-		echo "downloaded from: [APKMirror - TikTok]($dl_url)"
+	 echo "TikTok version: ${last_ver}"
+	 echo "downloaded from: [APKMirror - TikTok]($dl_url)"
 }
 
 # Downloading twitch
 dl_twitch() {
-	echo "Downloading Twitch"
-	local last_ver
-	last_ver="$twversion"
-	last_ver="${last_ver:-$(get_apk_vers "https://www.apkmirror.com/uploads/?appcategory=twitch" | get_largest_ver)}"
-
-	echo "Choosing version '${last_ver}'"
-	local base_apk="twitch.apk"
-		dl_url=$(dl_apk "https://www.apkmirror.com/apk/twitch-interactive-inc/twitch/twitch-${last_ver//./-}-release/" \
+	 echo "Downloading Twitch"
+	 local last_ver
+	 last_ver="$twversion"
+	 last_ver="${last_ver:-$(get_apk_vers "https://www.apkmirror.com/uploads/?appcategory=twitch" | get_largest_ver)}"
+	 echo "Choosing version '${last_ver}'"
+	 local base_apk="twitch.apk"
+	 dl_url=$(dl_apk "https://www.apkmirror.com/apk/twitch-interactive-inc/twitch/twitch-${last_ver//./-}-release/" \
 			"APK</span>[^@]*@\([^#]*\)" \
 			"$base_apk")
-		echo "Twitch version: ${last_ver}"
-		echo "downloaded from: [APKMirror - Twitch]($dl_url)"
+	 echo "Twitch version: ${last_ver}"
+	 echo "downloaded from: [APKMirror - Twitch]($dl_url)"
 }
 dl_mes() {
-	echo "Downloading Messenger (${arm64-v8a})"
-	local last_ver
-	last_ver="$version"
-	last_ver="${last_ver:-$(get_apk_vers "https://www.apkmirror.com/uploads/?appcategory=messenger" | get_largest_ver)}"
-	
-	echo "Choosing version '${last_ver}'"
-	local base_apk="messenger.apk"
-	local regexp_arch='arm64-v8a</div>[^@]*@\([^"]*\)'
-		dl_url=$(dl_apk "https://www.apkmirror.com/apk/facebook-2/messenger/messenger-${last_ver//./-}-release/" \
+	 echo "Downloading Messenger (${arm64-v8a})"
+	 local last_ver
+	 last_ver="$version"
+	 last_ver="${last_ver:-$(get_apk_vers "https://www.apkmirror.com/uploads/?appcategory=messenger" | get_largest_ver)}"
+	 echo "Choosing version '${last_ver}'"
+	 local base_apk="messenger.apk"
+	 local regexp_arch='arm64-v8a</div>[^@]*@\([^"]*\)'
+	 dl_url=$(dl_apk "https://www.apkmirror.com/apk/facebook-2/messenger/messenger-${last_ver//./-}-release/" \
 			"$regexp_arch" \
 			"$base_apk")
-		echo "Messenger (${arm64-v8a}) version: ${last_ver}"
-		echo "downloaded from: [APKMirror - Messenger ${arm64-v8a}]($dl_url)"
+	 echo "Messenger (${arm64-v8a}) version: ${last_ver}"
+	 echo "downloaded from: [APKMirror - Messenger ${arm64-v8a}]($dl_url)"
 }
 # Function fletch latest supported version can patch
 get_ytrv_ver() {
@@ -135,15 +130,15 @@ get_ytmsrv_ver() {
     ytmsversion=$(jq -r '.[] | select(.name == "hide-get-premium") | .compatiblePackages[] | select(.name == "com.google.android.apps.youtube.music") | .versions[-1]' patches.json)
 }
 get_tw_ver() {
-twversion=$(jq -r '.[] | select(.name == "block-video-ads") | .compatiblePackages[] | select(.name == "tv.twitch.android.app") | .versions[-1]' patches.json)
+    twversion=$(jq -r '.[] | select(.name == "block-video-ads") | .compatiblePackages[] | select(.name == "tv.twitch.android.app") | .versions[-1]' patches.json)
 }
 get_tt_ver() {
-ttversion=$(jq -r '.[] | select(.name == "sim-spoof") | .compatiblePackages[] | select(.name == "com.ss.android.ugc.trill") | .versions[-1]' patches.json)
+    ttversion=$(jq -r '.[] | select(.name == "sim-spoof") | .compatiblePackages[] | select(.name == "com.ss.android.ugc.trill") | .versions[-1]' patches.json)
 }
 patch() {
-if [ -f "$1.apk" ]; then
-java -jar revanced-cli*.jar -m revanced-integrations*.apk -b revanced-patches*.jar -a $1.apk ${EXCLUDE_PATCHES[@]} ${INCLUDE_PATCHES[@]} --keystore=ks.keystore -o ./build/$2.apk
-else 
-exit 1
-fi
+    if [ -f "$1.apk" ]; then
+    java -jar revanced-cli*.jar -m revanced-integrations*.apk -b revanced-patches*.jar -a $1.apk ${EXCLUDE_PATCHES[@]} ${INCLUDE_PATCHES[@]} --keystore=ks.keystore -o ./build/$2.apk
+    else 
+        exit 1
+    fi
 }
