@@ -53,7 +53,7 @@ dl_yt() {
 	last_ver="${last_ver:-$(get_apk_vers "https://www.apkmirror.com/uploads/?appcategory=youtube" | get_largest_ver)}"
 	
 	echo "Choosing version '${last_ver}'"
-	local base_apk="youtube-v$ytversion.apk"
+	local base_apk="youtube.apk"
 	  dl_url=$(dl_apk "https://www.apkmirror.com/apk/google-inc/youtube/youtube-${last_ver//./-}-release/" \
 			"APK</span>[^@]*@\([^#]*\)" \
 			"$base_apk")
