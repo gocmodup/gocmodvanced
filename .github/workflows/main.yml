@@ -5,7 +5,7 @@ on:
 #    - cron: "0 10 * * *"
   workflow_dispatch:
 jobs:
-  patch:
+  patch1:
     name: Patch Revanced 
     permissions: write-all
     runs-on: ubuntu-latest
@@ -19,12 +19,12 @@ jobs:
           java-version: '17'
       
       - name: Patch apk
-        run: bash build-rve.sh  
+        run: bash build-rv.sh  
         
       - name: Generate release info
         run: | 
           echo "
-          **Messenger Revanced** 
+          **Revanced** 
           "> ${{ github.workspace }}-CHANGELOG.txt
           
       - name: Release
@@ -52,3 +52,51 @@ jobs:
           repository: ${{ github.repository }}
           retain_days: 0
           keep_minimum_runs: 1
+
+patch2:
+    name: Patch Revanced Extended 
+    permissions: write-all
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up jdk
+        uses: actions/setup-java@v3.10.0
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+      
+      - name: Patch apk
+        run: bash build-rve.sh  
+        
+      - name: Generate release info
+        run: | 
+          echo "
+          **Revanced Extended** 
+          "> ${{ github.workspace }}-CHANGELOG.txt
+          
+      - name: Release
+        uses: softprops/action-gh-release@v0.1.15
+        with:
+          files: ./build/*
+          name: Revanced Extended 
+          tag_name: all
+          body_path: ${{ github.workspace }}-CHANGELOG.txt
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}   
+
+      - name: Delete older releases
+        uses: dev-drprasad/delete-older-releases@v0.2.1
+        with:
+          keep_latest: 1
+          delete_tags: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Delete workflow runs
+        uses: Mattraks/delete-workflow-runs@v2
+        with:
+          token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          retain_days: 0
+          keep_minimum_runs: 15
