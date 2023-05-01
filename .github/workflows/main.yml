@@ -34,6 +34,7 @@ jobs:
         uses: softprops/action-gh-release@v0.1.15
         with:
           files: ./build/*
+                 revanced-version.txt
           name: Revanced & Revanced Extended
           tag_name: all
           body_path: ${{ github.workspace }}-CHANGELOG.txt
@@ -85,6 +86,7 @@ jobs:
         uses: softprops/action-gh-release@v0.1.15
         with:
           files: ./build/*
+                 revanced-extended-version.txt
           name: Revanced & Revanced Extended
           tag_name: all
           body_path: ${{ github.workspace }}-CHANGELOG.txt
