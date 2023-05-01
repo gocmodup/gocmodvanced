@@ -124,10 +124,13 @@ dl_mes() {
 		echo "downloaded from: [APKMirror - Messenger ${arm64-v8a}]($dl_url)"
 }
 # Function fletch latest supported version can patch
-get_support_ytversion() {
-    ytversion=$(jq -r '.[] | select(.name == "microg-support") | .compatiblePackages[] | select(.name == "com.google.android.youtube") | .versions[-1]' patches.json) 
+get_ytrv_ver() {
+    ytversion=$(jq -r '.[] | select(.name == "video-ads") | .compatiblePackages[] | select(.name == "com.google.android.youtube") | .versions[-1]' patches.json) 
 }
-get_support_ytmsversion() {
+get_ytrve_ver() {
+    ytversion=$(jq -r '.[] | select(.name == "hide-general-ads") | .compatiblePackages[] | select(.name == "com.google.android.youtube") | .versions[-1]' patches.json) 
+}
+get_ytmsrv_ver() {
     ytmsversion=$(jq -r '.[] | select(.name == "hide-get-premium") | .compatiblePackages[] | select(.name == "com.google.android.apps.youtube.music") | .versions[-1]' patches.json)
 }
 get_tw_ver() {
