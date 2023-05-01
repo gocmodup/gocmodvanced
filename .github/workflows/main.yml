@@ -31,8 +31,8 @@ jobs:
         uses: softprops/action-gh-release@v0.1.15
         with:
           files: ./build/*
-          name: Messenger 
-          tag_name: messenger
+          name: Revanced 
+          tag_name: all
           body_path: ${{ github.workspace }}-CHANGELOG.txt
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}   
