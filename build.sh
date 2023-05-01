@@ -11,4 +11,4 @@ patch "tv.twitch.android.app@$twversion" "twitch-revanced-v$twversion"
 # Patch Tiktok 
 get_key_patch "tiktok"
 get_tt_ver
-patch "com.ss.android.ugc.trill@$ttversion" "tiktok-revanced-v$ttversion"
+patch "com.ss.android.ugc.trill@$ttversion -d huawei-app-gallery" "tiktok-revanced-v$ttversion"
