@@ -12,3 +12,4 @@ patch "youtube" "youtube-revanced-extended"
 get_patches_key "youtube-music-revanced-extended"
 dl_ytms
 patch "youtube-music" "youtube-music-revanced-extended"
+ls revanced-patches*.jar >> revanced-extended-version.txt
