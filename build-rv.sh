@@ -26,3 +26,4 @@ get_patches_key "youtube-music-revanced"
 get_ytmsrv_ver
 dl_ytms
 patch "youtube-music" "youtube-music-revanced"
+ls revanced-patches*.jar >> revanced-version.txt
