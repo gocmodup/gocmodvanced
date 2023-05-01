@@ -22,7 +22,7 @@ get_ytrv_ver
 dl_yt
 patch "youtube" "youtube-revanced"
 # Patch Twitch
-get_patches_key "youtube-music"
+get_patches_key "youtube-music-revanced"
 get_ytmsrv_ver
 dl_ytms
 patch "youtube-music" "youtube-music-revanced"
