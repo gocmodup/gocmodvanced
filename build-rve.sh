@@ -1,55 +1,14 @@
 #!/bin/bash
-
-# Revanced build
-
+# Revanced Extended build
 source tools.sh
+dl_gh "inotia00"
+# Patch YouTube Extended
 
-dl_gh "revanced" 
-
-# Messenger
-
-get_patches_key "messenger"
-
-dl_mes
-
-patch "messenger" "messenger-revanced"
-
-# Patch Twitch
-
-get_patches_key "twitch"
-
-get_tw_ver
-
-dl_twitch
-
-patch "twitch" "twitch-revanced"
-
-# Patch Tiktok 
-
-get_patches_key "tiktok"
-
-get_tt_ver
-
-dl_tt
-
-patch "tiktok" "tiktok-revanced"
-
-# Patch YouTube 
-
-get_patches_key "youtube-revanced"
-
-get_ytrv_ver
-
+get_patches_key "youtube-revanced-extended"
+get_ytrve_ver
 dl_yt
-
-patch "youtube" "youtube-revanced"
-
+patch "youtube" "youtube-revanced-extended"
 # Patch Twitch
-
-get_patches_key "youtube-music"
-
-get_ytmsrv_ver
-
+get_patches_key "youtube-music-revanced-extended"
 dl_ytms
-
-patch "youtube-music" "youtube-music-revanced"
+patch "youtube-music" "youtube-music-revanced-extended"
