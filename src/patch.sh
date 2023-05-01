@@ -18,7 +18,7 @@ get_tw_ver() {
 twversion=$(jq -r '.[] | select(.name == "block-video-ads") | .compatiblePackages[] | select(.name == "tv.twitch.android.app") | .versions[-1]' patches.json)
 }
 get_tt_ver() {
-twversion=$(jq -r '.[] | select(.name == "downloads") | .compatiblePackages[] | select(.name == "com.ss.android.ugc.trill") | .versions[-1]' patches.json)
+ttversion=$(jq -r '.[] | select(.name == "downloads") | .compatiblePackages[] | select(.name == "com.ss.android.ugc.trill") | .versions[-1]' patches.json)
 }
 patch() {
 chmod +x apkeep && ./apkeep -a $1 .
