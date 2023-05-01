@@ -32,7 +32,7 @@ jobs:
         with:
           files: ./build/*
           name: Revanced 
-          tag_name: revanced
+          tag_name: rv
           body_path: ${{ github.workspace }}-CHANGELOG.txt
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}   
@@ -80,7 +80,7 @@ jobs:
         with:
           files: ./build/*
           name: Revanced Extended 
-          tag_name: revanced extended
+          tag_name: rve
           body_path: ${{ github.workspace }}-CHANGELOG.txt
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}   
